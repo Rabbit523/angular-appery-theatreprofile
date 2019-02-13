@@ -1,0 +1,1371 @@
+<div ng-controller="DashboardOrganization" ng-cloak ng-init="init()">
+    <ion-content show-header="false" show-footer="false" show-top-tabs="false" show-tabs="false"
+    direction="xy" padding="false" overflow-scroll="true" has-bouncing="false" class="backgroundTPgrey">
+        <div class="maxwidth">
+            <div class="row nopadding">
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+                <div class="col nopadding backgroundTPheadergrey">
+                    <div>
+                        <div class="row">
+                            <div class="col nopadding col-center">
+                                <img ng-click="home()" width="" height="" src="files/images/logo.png" class="img-default img-responsive"
+                                alt="Image error">
+                            </div>
+                            <div class="col col-90">
+                                <div class="button-bar">
+                                    <button class="button button-block" ng-click="shows()">
+                                        Shows
+                                    </button>
+                                    <button class="button button-block" ng-click="productions()">
+                                        Productions
+                                    </button>
+                                    <button class="button button-block" ng-click="people()">
+                                        People
+                                    </button>
+                                    <button class="button button-block" ng-click="venues()">
+                                        Venues
+                                    </button>
+                                    <button class="button button-block" ng-click="companies()">
+                                        Companies
+                                    </button>
+                                    <button class="button button-block" ng-click="news()">
+                                        News
+                                    </button>
+                                    <button class="button button-block" ng-click="social()">
+                                        Social
+                                    </button>
+                                    <button class="button button-block" ng-click="about()">
+                                        About
+                                    </button>
+                                    <button class="button textred fontlightbold button-block" ng-click="closeTab()">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+            </div>
+        </div>
+        <div class="maxwidth" ng-style="{'padding-top':'1rem'}">
+            <div class="row nopadding row-center">
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+                <div class="col nopadding">
+                    <div>
+                        <div class="row nopadding row-center" ng-click="chooseDateRange()">
+                            <div class="col col-25">
+                                <img width="" height="" src="files/images/Seats-Black-Small.png" class="img-default img-responsive"
+                                alt="Image error">
+                            </div>
+                            <div class="col">
+                                <div ng-if="dateRange.datesChosen === false" class="fontsize-18">
+                                    Choose Dates
+                                </div>
+                                <div ng-if="dateRange.datesChosen === true">
+                                    <div class="row nopadding">
+                                        <div class="col col-33">
+                                            <div class="fontsize-18 textright">
+                                                From:
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="fontsize-18 fontlightbold">
+                                                {{dateRange.startDate|limitTo:-5}}-{{dateRange.startDate|limitTo:4}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row nopadding">
+                                        <div class="col col-33">
+                                            <div class="fontsize-18 textright">
+                                                To:
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="fontsize-18 fontlightbold">
+                                                {{dateRange.endDate|limitTo:-5}}-{{dateRange.endDate|limitTo:4}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-50">
+                    <p ng-if="org == null" class="textcenter fontsize-28">
+                        Choose an Organization to Get Started
+                    </p>
+                    <p ng-if="org != null" class="textcenter fontsize-28">
+                        {{organizations[org].orgNames}}
+                    </p>
+                </div>
+                <div class="col nopadding">
+                    <div>
+                        <div class="row nopadding row-center" ng-click="introModal()">
+                            <div class="col">
+                                <div class="textright fontsize-18">
+                                    Intro
+                                </div>
+                            </div>
+                            <div class="col col-25">
+                                <img width="" height="" src="files/images/stage-TP-color.png" class="img-default img-responsive"
+                                alt="Image error">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+            </div>
+        </div>
+        <div class="maxwidth">
+            <div class="row nopadding">
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+                <div class="col col-25" ng-if="org == null">
+                </div>
+                <div class="col" ng-if="orgsLoading == false">
+                    <div>
+                        <div class="row nopadding row-center">
+                            <div class="col nopadding">
+                                <div class="item item-input item-select roundedborder">
+                                    <div class="input-label">
+                                        Select Organization
+                                    </div>
+                                    <select ng-change="chooseOrganization(org)" ng-model="org">
+                                        <option value="{{a.index}}" ng-repeat="a in organizations">
+                                            {{a.orgNames}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col col-20" ng-if="org != &quot;&quot;">
+                                <div class="dashbutton">
+                                    <div class="row nopadding row-center" ng-click="getDataZero(org)">
+                                        <div class="col nopadding textcenter">
+                                            <img width="" height="40px" src="files/images/Masks-modal-White.png" class="img-default"
+                                            alt="Image error">
+                                        </div>
+                                        <div class="col nopadding textcenter">
+                                            <div class="textcenter fontsize-18">
+                                                Run
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ng-if="org != null">
+                    <div ng-if="organizationData.length != 0">
+                        <div class="row nopadding row-center">
+                            <div class="col nopadding">
+                                <div class="item item-input item-select roundedborder">
+                                    <div class="input-label">
+                                        Select Show
+                                    </div>
+                                    <select ng-change="chosenShow(show)" ng-model="show">
+                                        <option value="{{b.Index}}" ng-repeat="b in organizationData">
+                                            {{b.ShowTitles}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col textright col-20">
+                                <div class="dashbutton" ng-if="showSpinner2 == false">
+                                    <div class="row nopadding row-center" ng-click="chooseShow(show,org)">
+                                        <div class="col nopadding textcenter">
+                                            <img width="" height="40px" src="files/images/two_tikets-modal.png" class="img-default"
+                                            alt="Image error">
+                                        </div>
+                                        <div class="col nopadding textcenter">
+                                            <div class="textcenter fontsize-18">
+                                                Run
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ion-spinner class="centered-spinner textcenter" ng-show="showSpinner2" ng-style="{'stroke':'#cc0000'}">
+                                </ion-spinner>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-25" ng-if="org == null">
+                </div>
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+            </div>
+        </div>
+        <div class="maxwidth">
+            <div class="row nopadding">
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+                <div class="col">
+                    <div ng-if="org != null">
+                        <div class="row nopadding">
+                            <div class="col backgrounddashboardwhite dashheight">
+                                <div>
+                                    <div class="row nopadding">
+                                        <div class="col">
+                                            <div>
+                                                <div title="Chart is based on quantity of tickets purchased for each show compared to quantity of tickets sold by the organization."
+                                                title-direction="right">
+                                                    <img ng-src="files/images/PAR-can-modal.png" width="75%" height="auto">
+                                                    </img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-80">
+                                            <p class="fontlightbold fontsize-24 textcenter textdarkred">
+                                                What Shows Sold the Best?
+                                            </p>
+                                            <p ng-if="report == 0 && org != ''" class="fontlightbold fontsize-18 textcenter">
+                                                Percentage of Total Purchased Tickets
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bulletchartbox" ng-if="organizationData.length != 0">
+                                    <div class="row textcenter litepadding row-bottom">
+                                        <div class="col litepadding col-25">
+                                            <p ng-if="windowWidth > 1024" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-24 fontlightbold">
+                                                {{orgData[orgData.length-1].NetSales | currency:$:0}}
+                                            </p>
+                                            <p ng-if="windowWidth < 1025" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-20 fontlightbold">
+                                                {{orgData[orgData.length-1].NetSales | currency:$:0}}
+                                            </p>
+                                            <div>
+                                                Company
+                                                <br>
+                                                Net Sales
+                                            </div>
+                                        </div>
+                                        <div class="col litepadding col-25">
+                                            <p ng-if="windowWidth > 1024" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-24 fontlightbold">
+                                                {{orgData[orgData.length-1].NetQty | number}}
+                                            </p>
+                                            <p ng-if="windowWidth < 1025" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-20 fontlightbold">
+                                                {{orgData[orgData.length-1].NetQty | number}}
+                                            </p>
+                                            <div>
+                                                Company
+                                                <br>
+                                                Attendance
+                                            </div>
+                                        </div>
+                                        <div class="col litepadding">
+                                            <p ng-if="windowWidth > 1024" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-24 fontlightbold">
+                                                {{orgData[orgData.length-1].Purchased | number}}
+                                            </p>
+                                            <p ng-if="windowWidth < 1025" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-20 fontlightbold">
+                                                {{orgData[orgData.length-1].Purchased | number}}
+                                            </p>
+                                            <div>
+                                                Company
+                                                <br>
+                                                Paid Attnd
+                                            </div>
+                                        </div>
+                                        <div class="col litepadding">
+                                            <p ng-if="windowWidth > 1024" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-24 fontlightbold">
+                                                {{orgData[orgData.length-1].numEvents | number}}
+                                            </p>
+                                            <p ng-if="windowWidth < 1025" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-20 fontlightbold">
+                                                {{orgData[orgData.length-1].numEvents | number}}
+                                            </p>
+                                            <div>
+                                                Company
+                                                <br>
+                                                Events
+                                            </div>
+                                        </div>
+                                        <div class="col litepadding">
+                                            <p ng-if="windowWidth > 1024" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-24 fontlightbold">
+                                                {{orgData[orgData.length-1].PctCapacity}}%
+                                            </p>
+                                            <p ng-if="windowWidth < 1025" ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-20 fontlightbold">
+                                                {{orgData[orgData.length-1].PctCapacity}}%
+                                            </p>
+                                            <div ng-if="windowWidth >1024">
+                                                Company %
+                                                <br>
+                                                of Capacity
+                                            </div>
+                                            <div ng-if="windowWidth <1025">
+                                                Company
+                                                <br>
+                                                Capacity
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row nopadding">
+                                        <div class="col nopadding textcenter" ng-if="showSpinner1 == true" ng-style="{'height':'680px'}">
+                                            <ion-spinner class="centered-spinner" ng-show="showSpinner1" ng-style="{'stroke':'#cc0000'}">
+                                            </ion-spinner>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="showSpinner1 == false">
+                                    <nvd3 options="pieoptions" data="piedata">
+                                    </nvd3>
+                                </div>
+                                <div ng-if="organizationData.length != 0">
+                                    <div class="row nopadding">
+                                        <div class="col">
+                                            <div>
+                                                <div class="row nopadding">
+                                                    <div class="col">
+                                                        <div>
+                                                            <div title="Your top 3 shows with the greatest percentage of the total tickets sold over the chosen time period."
+                                                            title-direction="right">
+                                                                <img ng-src="files/images/light-bulb.png" width="50%" height="auto">
+                                                                </img>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col col-80">
+                                                        <p class="fontlightbold fontsize-18 textcenter">
+                                                            Top 3 Most Purchased Shows
+                                                        </p>
+                                                    </div>
+                                                    <div class="col">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-center">
+                                        <div class="col nopadding">
+                                            <div>
+                                                <div class="row nopadding row-center">
+                                                    <div class="col backgroundchartblue textcenter col-10">
+                                                        <div class="fontlightbold textwhite">
+                                                            1
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div ng-if="windowWidth > 1024" class="fontlightbold">
+                                                            {{organizationData[0].ShowTitles|limitTo:20}}
+                                                        </div>
+                                                        <div ng-if="windowWidth < 1025" class="fontlightbold">
+                                                            {{organizationData[0].ShowTitles|limitTo:16}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding">
+                                            <div ng-if="organizationData.length >1">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col backgroundchartlightblue textcenter col-10">
+                                                        <div class="fontlightbold textwhite">
+                                                            2
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div ng-if="windowWidth > 1024" class="fontlightbold">
+                                                            {{organizationData[1].ShowTitles|limitTo:20}}
+                                                        </div>
+                                                        <div ng-if="windowWidth < 1025" class="fontlightbold">
+                                                            {{organizationData[1].ShowTitles|limitTo:16}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding">
+                                            <div ng-if="organizationData.length >2">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col backgroundchartorange textcenter col-10">
+                                                        <div class="fontlightbold textwhite">
+                                                            3
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div ng-if="windowWidth > 1024" class="fontlightbold">
+                                                            {{organizationData[2].ShowTitles|limitTo:20}}
+                                                        </div>
+                                                        <div ng-if="windowWidth < 1025" class="fontlightbold">
+                                                            {{organizationData[2].ShowTitles|limitTo:16}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-center">
+                                        <div class="col nopadding col-33">
+                                            <div>
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold textgreen">
+                                                            Net Sales: ${{organizationData[0].NetSales|number:0}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding col-33">
+                                            <div ng-if="organizationData.length >1">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold textgreen">
+                                                            Net Sales: ${{organizationData[1].NetSales|number:0}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding">
+                                            <div ng-if="organizationData.length >2">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold textgreen">
+                                                            Net Sales: ${{organizationData[2].NetSales|number:0}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-center">
+                                        <div class="col nopadding col-33">
+                                            <div>
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold">
+                                                            Purchased: {{organizationData[0].Purchased|number}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding col-33">
+                                            <div ng-if="organizationData.length >1">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold">
+                                                            Purchased: {{organizationData[1].Purchased|number}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding">
+                                            <div ng-if="organizationData.length >2">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold">
+                                                            Purchased: {{organizationData[2].Purchased|number}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-center">
+                                        <div class="col nopadding col-33">
+                                            <div>
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold">
+                                                            Comped: {{organizationData[0].Comp|number}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding col-33">
+                                            <div ng-if="organizationData.length >1">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold">
+                                                            Comped: {{organizationData[1].Comp|number}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding">
+                                            <div ng-if="organizationData.length >2">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold">
+                                                            Comped: {{organizationData[2].Comp|number}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row row-center">
+                                        <div class="col nopadding col-33">
+                                            <div>
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold">
+                                                            Refunded: {{organizationData[0].Refunded|number}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding col-33">
+                                            <div ng-if="organizationData.length >1">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold">
+                                                            Refunded: {{organizationData[1].Refunded|number}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col nopadding">
+                                            <div ng-if="organizationData.length >2">
+                                                <div class="row nopadding row-center">
+                                                    <div class="col col-10">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="fontlightbold">
+                                                            Refunded: {{organizationData[2].Refunded|number}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div ng-if="show != null && organizationData.length != 0">
+                        <div class="row nopadding">
+                            <div class="col backgrounddashboardwhite dashheight">
+                                <div>
+                                    <div class="row nopadding">
+                                        <div class="col">
+                                        </div>
+                                        <div class="col col-80">
+                                            <p class="fontlightbold fontsize-24 textcenter textdarkred">
+                                                How Did We Do vs. Peers?
+                                            </p>
+                                            <p class="fontlightbold fontsize-18 textcenter">
+                                                {{peerData[0].numEvents == 0 ? organizationData[show].ShowTitles : peerData[0].tpShowTitle}}
+                                            </p>
+                                        </div>
+                                        <div class="col textright">
+                                            <div>
+                                                <div title="Peer data is compiled based on all available ticket data from other companies that performed the same show in the selected time period."
+                                                title-direction="left">
+                                                    <img ng-src="files/images/PAR-can-modal-flip.png" width="75%" height="auto">
+                                                    </img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row textcenter litepadding row-bottom">
+                                        <div class="col litepadding">
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                    </div>
+                                                    <div class="col backgroundTPred col-50">
+                                                    </div>
+                                                    <div class="col">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <Peersdiv ng-if="show != null">
+                                                Our Results
+                                            </Peersdiv>
+                                        </div>
+                                        <div class="col litepadding">
+                                            <div>
+                                                <div class="row nopadding">
+                                                    <div class="col nopadding">
+                                                        <img width="" height="20px" src="files/images/triangle-outline-xxl.png" class="img-default"
+                                                        alt="Image error">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <Peersdiv ng-if="show != null">
+                                                Peers' Results
+                                            </Peersdiv>
+                                        </div>
+                                        <div class="col litepadding">
+                                            <p ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-24 fontlightbold">
+                                                {{organizationData[show].NetQty|number}}
+                                            </p>
+                                            <Peersdiv ng-if="show != null && windowWidth >1024">
+                                                Total Attendance
+                                            </Peersdiv>
+                                            <Peersdiv ng-if="show != null && windowWidth <1025">
+                                                Total Attnd
+                                            </Peersdiv>
+                                        </div>
+                                        <div class="col litepadding">
+                                            <p ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                            class="fontsize-24 fontlightbold">
+                                                {{organizationData[show].Purchased|number}}
+                                            </p>
+                                            <Peersdiv ng-if="show != null">
+                                                Paid Attendance
+                                            </Peersdiv>
+                                        </div>
+                                        <div class="col col-10">
+                                            <div>
+                                                <div title="Total Attendance is all attendees (purchased & comps). Paid Attendance is only purchased tickets (refunds not included)."
+                                                title-direction="left">
+                                                    <img ng-src="files/images/light-bulb.png" width="50%" height="auto">
+                                                    </img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col litepadding">
+                                            <div>
+                                                <div class="row bulletchartbox">
+                                                    <div class="col">
+                                                        <div>
+                                                            <div class="row nopadding row-center">
+                                                                <div class="col">
+                                                                </div>
+                                                                <div class="col col-80">
+                                                                    <div ng-if="show != null" class="fontlightbold textcenter fontsize-16">
+                                                                        Percent of Paid Attendees vs. Peers
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col textright">
+                                                                    <div>
+                                                                        <div title="The red bar is your paid attendance for this show. The black and white triangle is the average paid attendance of your peers for this show."
+                                                                        title-direction="left">
+                                                                            <img ng-src="files/images/light-bulb.png" width="50%" height="auto">
+                                                                            </img>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-if="show != null">
+                                                            <nvd3 options="bulletoptions" data="bulletdata">
+                                                            </nvd3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col litepadding" ng-if="show != null">
+                                            <div>
+                                                <div class="row bulletchartbox">
+                                                    <div class="col">
+                                                        <div>
+                                                            <div class="row nopadding row-center">
+                                                                <div class="col">
+                                                                </div>
+                                                                <div class="col textcenter col-80">
+                                                                    <div ng-if="show != null" class="fontlightbold  fontsize-16">
+                                                                        Percent of Capacity Filled vs. Peers
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col textright">
+                                                                    <div>
+                                                                        <div title="The red bar is your capacity (available seats) filled for this show. The black and white triangle is the average capacity filled by your peers for this show."
+                                                                        title-direction="left">
+                                                                            <img ng-src="files/images/light-bulb.png" width="50%" height="auto">
+                                                                            </img>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-if="show != null">
+                                                            <nvd3 options="bulletoptions" data="capacitydata">
+                                                            </nvd3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col textcenter nopadding" ng-if="show != null">
+                                            <div>
+                                                <div class="row nopadding" ng-style="{'padding-top':'20px'}">
+                                                    <div class="col textcenter">
+                                                        <p class="fontsize-24 textgreen fontlightbold">
+                                                            {{organizationData[show].numEvents|number}}
+                                                        </p>
+                                                        <div class="fontlightbold">
+                                                            Number of Events
+                                                        </div>
+                                                    </div>
+                                                    <div class="col textcenter">
+                                                        <p ng-class="{'textred': organizationData[show].PctPaid < organizationData[show].PeerPctPaid, 'textgreen': organizationData[show].PctPaid >= organizationData[show].PeerPctPaid}"
+                                                        class="fontsize-24 fontlightbold">
+                                                            {{organizationData[show].PctPaid}}%
+                                                        </p>
+                                                        <div ng-if="windowWidth > 1024" class="fontlightbold">
+                                                            Percent of Paid Attendees
+                                                        </div>
+                                                        <div ng-if="windowWidth < 1025" class="fontlightbold">
+                                                            Paid Attendees
+                                                        </div>
+                                                    </div>
+                                                    <div class="col textcenter">
+                                                        <p ng-class="{'textred': organizationData[show].PctCapacity < organizationData[show].PeerPctCapacity, 'textgreen': organizationData[show].PctCapacity >= organizationData[show].PeerPctCapacity}"
+                                                        class="fontsize-24 fontlightbold">
+                                                            {{organizationData[show].PctCapacity}}%
+                                                        </p>
+                                                        <div ng-if="windowWidth > 1024" class="fontlightbold">
+                                                            Percent of Capacity Filled
+                                                        </div>
+                                                        <div ng-if="windowWidth < 1025" class="fontlightbold">
+                                                            Capacity Filled
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col textcenter litepadding col-50" ng-if="show != null">
+                                            <div>
+                                                <div class="row bulletchartbox">
+                                                    <div class="col">
+                                                        <p ng-if="show != null && windowWidth > 1024" class="fontlightbold">
+                                                            Average Price per Ticket vs. Peers
+                                                        </p>
+                                                        <p ng-if="show != null && windowWidth < 1025" class="fontlightbold fontsize-12">
+                                                            Avg Price per Ticket vs. Peers
+                                                        </p>
+                                                        <div ng-if="show != null">
+                                                            <nvd3 options="discretebaroptions" data="discretebardata">
+                                                            </nvd3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col textcenter litepadding col-50" ng-if="show != null">
+                                            <div>
+                                                <div class="row bulletchartbox">
+                                                    <div class="col">
+                                                        <p ng-if="show != null && windowWidth > 1024" class="fontlightbold">
+                                                            Average Number of Events vs. Peers
+                                                        </p>
+                                                        <p ng-if="show != null && windowWidth < 1025" class="fontlightbold fontsize-12">
+                                                            Avg Number of Events vs. Peers
+                                                        </p>
+                                                        <div ng-if="show != null">
+                                                            <nvd3 options="discretebareventoptions" data="discretebareventdata">
+                                                            </nvd3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col litepadding col-50" ng-if="show != null">
+                                            <div>
+                                                <div class="row bulletchartbox">
+                                                    <div class="col textcenter">
+                                                        <p ng-if="show != null" class="fontlightbold textcenter fontsize-18">
+                                                            Key Show Stats
+                                                        </p>
+                                                        <div>
+                                                            <div class="row" ng-style="{'padding-top':'2px'}">
+                                                                <div class="col">
+                                                                </div>
+                                                                <div class="col">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <p ng-if="windowWidth >1024" class="fontlightbold textgreen fontsize-24">
+                                                                        ${{organizationData[show].NetSales|number}}
+                                                                    </p>
+                                                                    <p ng-if="windowWidth <1025" class="fontlightbold textgreen fontsize-18">
+                                                                        ${{organizationData[show].NetSales|number}}
+                                                                    </p>
+                                                                    <div class="fontlightbold textgreen fontsize-18">
+                                                                        Net Sales
+                                                                        <br>
+                                                                        (Less
+                                                                        <br>
+                                                                        Refunds)
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p ng-if="windowWidth > 1024" class="fontlightbold fontsize-24">
+                                                                        {{organizationData[show].PctTotalPurchased}}%
+                                                                    </p>
+                                                                    <p ng-if="windowWidth <1025" class="fontlightbold fontsize-18">
+                                                                        {{organizationData[show].PctTotalPurchased}}%
+                                                                    </p>
+                                                                    <div class="fontlightbold  fontsize-18">
+                                                                        Company
+                                                                        <br>
+                                                                        Tickets
+                                                                        <br>
+                                                                        Purchased
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" ng-style="{'padding-top':'3px'}">
+                                                                <div class="col">
+                                                                </div>
+                                                                <div class="col">
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <p ng-if="windowWidth > 1024" class="fontlightbold fontsize-24">
+                                                                        {{organizationData[show].Comp|number}}
+                                                                    </p>
+                                                                    <p ng-if="windowWidth < 1025" class="fontlightbold fontsize-18">
+                                                                        {{organizationData[show].Comp|number}}
+                                                                    </p>
+                                                                    <div class="fontlightbold  fontsize-18">
+                                                                        Comped
+                                                                        <br>
+                                                                        Tickets
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <p ng-if="windowWidth > 1024" class="fontlightbold fontsize-24">
+                                                                        {{organizationData[show].Refunded|number}}
+                                                                    </p>
+                                                                    <p ng-if="windowWidth < 1025" class="fontlightbold fontsize-18">
+                                                                        {{organizationData[show].Refunded|number}}
+                                                                    </p>
+                                                                    <div class="fontlightbold fontsize-18">
+                                                                        Refunded
+                                                                        <br>
+                                                                        Tickets
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col textcenter litepadding col-50" ng-if="show != null">
+                                            <div>
+                                                <div class="row bulletchartbox">
+                                                    <div class="col">
+                                                        <p ng-if="show != null && windowWidth > 1024" class="fontlightbold">
+                                                            Average Revenue per Event vs. Peers
+                                                        </p>
+                                                        <p ng-if="show != null && windowWidth < 1025" class="fontlightbold fontsize-12">
+                                                            Avg Revenue per Event vs. Peers
+                                                        </p>
+                                                        <div ng-if="show != null">
+                                                            <nvd3 options="discretebareventrevoptions" data="discretebareventrevdata">
+                                                            </nvd3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+            </div>
+        </div>
+        <div class="maxwidth">
+            <div class="row nopadding row-top" ng-if="show != null">
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+                <div class="col">
+                    <div class="backgrounddashboardwhite">
+                        <div class="row">
+                            <div class="col">
+                                <div>
+                                    <div class="row nopadding row-center">
+                                        <div class="col">
+                                            <div>
+                                                <div title="Morning = Before 1pm local time<br/> Afternoon = 1pm-5pm<br/>Evening = 5pm-8pm<br/>Night = After 8pm"
+                                                title-direction="right">
+                                                    <img ng-src="files/images/PAR-can-modal.png" width="100%" height="auto">
+                                                    </img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col col-90">
+                                            <p ng-if="show != ''" class="fontlightbold fontsize-24 textcenter textdarkred">
+                                                Dates &amp; Times
+                                            </p>
+                                            <p ng-if="show != ''" class="fontlightbold fontsize-18 textcenter">
+                                                {{organizationData[show].ShowTitles}}
+                                            </p>
+                                        </div>
+                                        <div class="col textright">
+                                            <div>
+                                                <div title="This data tells you which days and times had the best attendance for the selected show during the chosen time period."
+                                                title-direction="left">
+                                                    <img ng-src="files/images/PAR-can-modal-flip.png" width="100%" height="auto">
+                                                    </img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-top">
+                            <div class="col col-67">
+                                <div>
+                                    <div class="row nopadding">
+                                        <div class="col">
+                                        </div>
+                                        <div class="col col-80">
+                                            <p ng-if="show != null" class="fontlightbold textcenter fontsize-20">
+                                                Attendance By Date &amp; Time
+                                            </p>
+                                        </div>
+                                        <div class="col">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="textright fontlightbold fontsize-16">
+                                                M = Morning
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="textcenter fontlightbold fontsize-16">
+                                                A = Afternoon
+                                            </div>
+                                        </div>
+                                        <div class="col textcenter">
+                                            <div class="fontlightbold fontsize-16">
+                                                E = Evening
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="fontlightbold fontsize-16">
+                                                N = Night
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="show != null">
+                                    <nvd3 options="historicaldiscretebaroptions" data="historicaldiscretebardata">
+                                    </nvd3>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div>
+                                    <div class="row litepadding">
+                                        <div class="col bulletchartbox">
+                                            <div>
+                                                <div class="row nopadding">
+                                                    <div class="col">
+                                                        <p ng-if="show != null && windowWidth > 1024" class="fontlightbold textcenter fontsize-16">
+                                                            Average Attendance by Weekday (Best to Worst)
+                                                        </p>
+                                                        <p ng-if="show != null && windowWidth < 1025" class="fontlightbold textcenter">
+                                                            Average Attendance by Weekday
+                                                            <br>
+                                                            (Best to Worst)
+                                                        </p>
+                                                        <div class="bulletchartbox">
+                                                            <div class="row nopadding backgroundTPgrey fontlightbold row-bottom">
+                                                                <div class="col textcenter col-50">
+                                                                    <Peersdiv ng-if="show != null">
+                                                                        Day
+                                                                    </Peersdiv>
+                                                                </div>
+                                                                <div class="col textcenter">
+                                                                    <Peersdiv ng-if="show != null">
+                                                                        Average Attendance
+                                                                    </Peersdiv>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ion-scroll paging="false" scrollbar-x="false" has-bouncing="false" style="height:130px;">
+                                                            <div>
+                                                                <div class="row nopadding" ng-repeat="b in attendanceDetails[1]" ng-class-even="'backgroundTPgrey fontlightbold'">
+                                                                    <div class="col textcenter">
+                                                                        <Peersdiv ng-if="show != null">
+                                                                            {{b.days}}
+                                                                        </Peersdiv>
+                                                                    </div>
+                                                                    <div class="col textcenter">
+                                                                        <Peersdiv ng-if="show != null">
+                                                                            {{b.attendanceAvg}}
+                                                                        </Peersdiv>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ion-scroll>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row litepadding">
+                                        <div class="col bulletchartbox">
+                                            <div>
+                                                <div class="row nopadding">
+                                                    <div class="col">
+                                                        <p ng-if="show != null && windowWidth > 1024" class="fontlightbold textcenter fontsize-16">
+                                                            Average Attendance by Showtime (Best to Worst)
+                                                        </p>
+                                                        <p ng-if="show != null && windowWidth < 1025" class="fontlightbold textcenter">
+                                                            Average Attendance by Showtime
+                                                            <br>
+                                                            (Best to Worst)
+                                                        </p>
+                                                        <div class="bulletchartbox">
+                                                            <div class="row nopadding backgroundTPgrey fontlightbold row-bottom">
+                                                                <div class="col textcenter col-50">
+                                                                    <Peersdiv ng-if="show != null">
+                                                                        Time
+                                                                    </Peersdiv>
+                                                                </div>
+                                                                <div class="col textcenter">
+                                                                    <Peersdiv ng-if="show != null">
+                                                                        Average Attendance
+                                                                    </Peersdiv>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ion-scroll paging="false" scrollbar-x="false" has-bouncing="false" style="height:100px;">
+                                                            <div>
+                                                                <div class="row nopadding" ng-repeat="b in attendanceDetails[2]" ng-class-even="'backgroundTPgrey fontlightbold'">
+                                                                    <div class="col textcenter">
+                                                                        <Peersdiv ng-if="show != null">
+                                                                            {{b.times}}
+                                                                        </Peersdiv>
+                                                                    </div>
+                                                                    <div class="col textcenter">
+                                                                        <Peersdiv ng-if="show != null">
+                                                                            {{b.attendanceAvg}}
+                                                                        </Peersdiv>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ion-scroll>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="row litepadding">
+                                        <div class="col bulletchartbox">
+                                            <p ng-if="show != null && windowWidth > 1024" class="fontlightbold textcenter fontsize-16">
+                                                Attendance By Top 10 ZIP Codes
+                                                <br>
+                                                (Scroll Within Box)
+                                            </p>
+                                            <p ng-if="show != null && windowWidth < 1025" class="fontlightbold textcenter">
+                                                Attendance By Top 10 ZIP Codes
+                                                <br>
+                                                (Scroll Within Box)
+                                            </p>
+                                            <div class="bulletchartbox">
+                                                <div class="row nopadding backgroundTPgrey fontlightbold row-bottom">
+                                                    <div class="col textcenter col-25">
+                                                        <Peersdiv ng-if="show != null">
+                                                            ZIP
+                                                        </Peersdiv>
+                                                    </div>
+                                                    <div class="col textcenter col-25">
+                                                        <Peersdiv ng-if="show != null">
+                                                            People
+                                                        </Peersdiv>
+                                                    </div>
+                                                    <div class="col textcenter">
+                                                        <Peersdiv ng-if="show != null">
+                                                            City
+                                                        </Peersdiv>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ion-scroll paging="false" scrollbar-x="false" has-bouncing="false" style="height:130px;"
+                                            class="textcenter">
+                                                <div>
+                                                    <div class="row nopadding textcenter row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[10].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[10].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[10].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding fontlightbold backgroundTPgrey row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[0].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[0].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[0].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[1].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[1].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[1].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding fontlightbold backgroundTPgrey row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[2].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[2].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[2].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[3].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[3].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[3].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding fontlightbold backgroundTPgrey row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[4].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[4].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[4].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding fontlightbold row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[5].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[5].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[5].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding fontlightbold backgroundTPgrey row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[6].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[6].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[6].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding fontlightbold row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[7].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[7].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[7].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding fontlightbold backgroundTPgrey row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[8].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[8].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[8].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row nopadding fontlightbold row-center">
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[9].uniqueZipCodes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col col-25">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[9].numAttended}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div ng-if="show != null">
+                                                                {{ticketsByZip[9].city}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ion-scroll>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-10" ng-if="windowWidth >1499">
+                </div>
+            </div>
+        </div>
+        <div class="maxwidth">
+            <div class="row nopadding">
+                <div class="col" ng-if="windowWidth >1499">
+                </div>
+                <div class="col textcenter col-80">
+                    <div>
+                        <div style="font-size:.75rem">
+                            Copyright &copy; 2017 by Theatre Profile. Powered by Tempus Analytics.
+                        </div>
+                    </div>
+                </div>
+                <div class="col" ng-if="windowWidth >1499">
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</div>

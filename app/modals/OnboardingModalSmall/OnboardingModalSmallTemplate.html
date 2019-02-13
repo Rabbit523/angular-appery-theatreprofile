@@ -1,0 +1,449 @@
+
+
+
+
+<div id="app/modals/OnboardingModalSmall/OnboardingModalSmallTemplate.html"  type="text/ng-template">
+    <ion-modal-view class="modalsmall" ng-controller="OnboardingModalSmallController" ng-init="init()" >
+
+    <ion-content 
+                 
+                 
+                 
+                 
+                 overflow-scroll=""
+                 scrollbar-x="false"
+                 
+                 
+                 
+                 
+                 
+                 has-bouncing="false"
+                 
+                 
+                 class="modalBG">
+
+    <div  >
+
+
+<div class="row row-center" >
+
+<div class="col textcenter" >
+</div>
+
+<div class="col textcenter col-80" >
+
+
+    <p  class="fontsize-28 light" >
+            
+            Welcome to the Theatre Profile
+    </p>
+
+
+
+    <div  class="fontsize-28 light" >
+            
+            Company Dashboard!
+    </div>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+    <div  ng-if="page == &quot;one&quot;" >
+
+
+<div class="row" >
+
+<div class="col col-10 col-center" >
+</div>
+
+<div class="col textcenter" >
+
+
+
+
+
+
+    <img 
+         width="" height=""
+         src="files/images/Masks-modal-2.png"
+         class="img-default"
+         alt="Image error">
+
+</div>
+
+<div class="col textcenter col-10 col-center" >
+
+
+    <i class="aio-icon-component
+                        aio-icon-component-lg icon ion-chevron-right light" ng-click="nextPage()" ></i>
+
+</div>
+</div>
+
+
+<div class="row" >
+
+<div class="col" >
+</div>
+
+<div class="col textcenter col-80" >
+
+
+    <p  class="fontsize-24 light" >
+            
+            Simple, intelligent reports show you
+    </p>
+
+
+
+    <p  class="fontsize-24 light" >
+            
+            how your shows perform.
+    </p>
+
+
+    <div  >
+
+
+<div class="row emptyspace" >
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+
+    <p  class="fontsize-24 light" >
+            
+            Hit the Run button
+    </p>
+
+
+
+    <p  class="fontsize-24 light" >
+            
+            when you're ready to get started.
+    </p>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+    <div  ng-if="page == &quot;three&quot;" >
+
+
+<div class="row" >
+
+<div class="col textcenter col-10 col-center" >
+
+
+    <i class="aio-icon-component
+                        aio-icon-component-lg icon ion-chevron-left light" ng-click="previousPage()" ></i>
+
+</div>
+
+<div class="col textcenter" >
+
+
+
+
+
+
+    <img 
+         width="" height=""
+         src="files/images/two_tikets-modal.png"
+         class="img-default"
+         alt="Image error">
+
+</div>
+
+<div class="col textcenter col-10 col-center" >
+
+
+    <i class="aio-icon-component
+                        aio-icon-component-lg icon ion-chevron-right light" ng-click="nextPage()" ></i>
+
+</div>
+</div>
+
+
+<div class="row" >
+
+<div class="col" >
+</div>
+
+<div class="col textcenter col-80" >
+
+
+    <p  class="fontsize-24 light" >
+            
+            Choose a show to see how attendance
+    </p>
+
+
+
+    <p  class="fontsize-24 light" >
+            
+            and price compare to your peers.
+    </p>
+
+
+    <div  >
+
+
+<div class="row emptyspace" >
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+
+    <p  class="fontsize-24 light" >
+            
+            Use this information to help you check the
+    </p>
+
+
+
+    <p  class="fontsize-24 light" >
+            
+            best performance day, time and price.
+    </p>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+    <div  ng-if="page == &quot;two&quot;" >
+
+
+<div class="row" >
+
+<div class="col textcenter col-10 col-center" >
+
+
+    <i class="aio-icon-component
+                        aio-icon-component-lg icon ion-chevron-left light" ng-click="previousPage()" ></i>
+
+</div>
+
+<div class="col textcenter" >
+
+
+
+
+
+
+    <img 
+         width="" height=""
+         src="files/images/Seats-modal-2.png"
+         class="img-default textcenter"
+         alt="Image error">
+
+</div>
+
+<div class="col textcenter col-10 col-center" >
+
+
+    <i class="aio-icon-component
+                        aio-icon-component-lg icon ion-chevron-right light" ng-click="nextPage()" ></i>
+
+</div>
+</div>
+
+
+<div class="row" >
+
+<div class="col" >
+</div>
+
+<div class="col textcenter col-80" >
+
+
+    <p  class="fontsize-24 light" >
+            
+            Narrow your results by date to see
+    </p>
+
+
+
+    <p  class="fontsize-24 light" >
+            
+            how you did by week, month, or season.
+    </p>
+
+
+    <div  >
+
+
+<div class="row emptyspace" >
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+
+    <p  class="fontsize-24 light" >
+            
+            Know your best-selling performances and
+    </p>
+
+
+
+    <p ng-if="windowWidth > 1025"  class="fontsize-24 light" >
+            
+            when you need creative promotions to boost sales.
+    </p>
+
+
+
+    <p ng-if="windowWidth < 1026"  class="fontsize-24 light" >
+            
+            when you need actions to boost sales.
+    </p>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+    <div  ng-if="page == &quot;four&quot;" >
+
+
+<div class="row" >
+
+<div class="col textcenter col-10 col-center" >
+
+
+    <i class="aio-icon-component
+                        aio-icon-component-lg icon ion-chevron-left light" ng-click="previousPage()" ></i>
+
+</div>
+
+<div class="col textcenter" >
+
+
+
+
+
+
+    <img 
+         width="" height=""
+         src="files/images/PAR-can-modal.png"
+         class="img-default textcenter"
+         alt="Image error">
+
+</div>
+
+<div class="col textcenter col-10 col-center" >
+</div>
+</div>
+
+
+<div class="row" >
+
+<div class="col" >
+</div>
+
+<div class="col textcenter col-80" >
+
+
+    <p  class="fontsize-24 light" >
+            
+            Mouse over images like this to learn
+    </p>
+
+
+
+    <p  class="fontsize-24 light" >
+            
+            more about the information you're seeing.
+    </p>
+
+
+    <div  >
+
+
+<div class="row emptyspace" >
+
+<div class="col" >
+</div>
+</div>
+
+
+<div class="row" ng-style="{'padding':'4px 0 4px 0'}" >
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+
+
+<button class="button fontsize-24 onboardbutton button-inline" ng-click="closeModal()" >
+        Let's Get Started!
+</button>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+    <div  >
+
+
+<div class="row" >
+
+<div class="col" >
+</div>
+
+<div class="col textcenter col-20" >
+
+
+    <i class="fontsize-20 aio-icon-component
+                        aio-icon-component-sm icon ion-record dark" ng-click="pageOne()" ng-class="{'textred': page != &quot;one&quot;, 'textwhite': page == &quot;one&quot;}" ></i>
+
+
+
+    <i class="fontsize-20 aio-icon-component
+                        aio-icon-component-sm icon ion-record dark" ng-click="pageTwo()" ng-class="{'textred': page != &quot;two&quot;, 'textwhite': page == &quot;two&quot;}" ></i>
+
+
+
+    <i class="fontsize-20 aio-icon-component
+                        aio-icon-component-sm icon ion-record dark" ng-click="pageThree()" ng-class="{'textred': page != &quot;three&quot;, 'textwhite': page == &quot;three&quot;}" ></i>
+
+
+
+    <i class="fontsize-20 aio-icon-component
+                        aio-icon-component-sm icon ion-record dark" ng-click="pageFour()" ng-class="{'textred': page != &quot;four&quot;, 'textwhite': page == &quot;four&quot;}" ></i>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+    </div>
+    </ion-content>
+
+
+
+
+    </ion-modal-view>
+</div>

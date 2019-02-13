@@ -1,0 +1,199 @@
+
+
+
+
+<div id="app/modals/DateRange/DateRangeTemplate.html"  type="text/ng-template">
+    <ion-modal-view class="" ng-controller="DateRangeController" >
+
+    <ion-content 
+                 
+                 
+                 
+                 
+                 overflow-scroll=""
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 class="modalBG">
+
+    <div  >
+
+
+<div class="row row-center" >
+
+<div class="col" ng-click="closeModal()" >
+
+
+    <i class="textred aio-icon-component
+                        aio-icon-component-sm icon ion-close dark" ></i>
+
+</div>
+
+<div class="col textcenter col-80" >
+
+
+    <div  class="fontsize-28 light" >
+            
+            Choose a Date Range
+    </div>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+    <div  >
+
+
+<div class="row" >
+
+<div class="col textcenter" >
+
+
+
+
+
+
+    <img ng-if="windowWidth > 1024" 
+         width="" height=""
+         src="files/images/Seats-modal-2.png"
+         class="img-default"
+         alt="Image error">
+
+
+
+
+
+
+
+    <img ng-if="windowWidth < 1025" 
+         width="" height="150px"
+         src="files/images/Seats-modal-2.png"
+         class="img-default"
+         alt="Image error">
+
+</div>
+</div>
+
+
+<div class="row" >
+
+<div class="col" >
+</div>
+
+<div class="col textcenter" >
+
+
+    <p  class="fontsize-20 light" >
+            
+            Select Start Date
+    </p>
+
+
+
+    
+
+
+<div class="item item-input" >
+    <input type="date"
+           placeholder="Enter text"
+           value=""
+           ng-model="startDate" >
+</div>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+
+
+<div class="row" >
+
+<div class="col" >
+</div>
+
+<div class="col textcenter" >
+
+
+    <p  class="fontsize-20 light" >
+            
+            Select End Date
+    </p>
+
+
+
+    
+
+
+<div class="item item-input" >
+    <input type="date"
+           placeholder="Enter text"
+           value=""
+           ng-model="endDate" >
+</div>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+    </div>
+
+    <div  >
+
+
+<div class="row" >
+
+<div class="col" >
+</div>
+
+<div class="col textcenter col-50" >
+
+
+
+<button class="button fontsize-24 onboardbutton button-inline" ng-click="selectDates(startDate,endDate)" >
+        Submit Dates
+</button>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+
+
+<div class="row" >
+
+<div class="col" >
+</div>
+
+<div class="col textcenter col-50" >
+
+
+
+<button class="button fontsize-16 onboardbutton button-inline" ng-click="resetDates()" >
+        Default Dates
+</button>
+
+</div>
+
+<div class="col" >
+</div>
+</div>
+    </div>
+    </ion-content>
+
+
+
+
+    </ion-modal-view>
+</div>

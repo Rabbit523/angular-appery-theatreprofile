@@ -1,0 +1,25 @@
+body {
+    background-color:#FFF;
+}
+
+.tab-content>.tab-pane {
+    display: none;
+}
+
+.tab-content>.active {
+    display: block;
+}
+
+.tab-content {
+    position:relative;
+    border:1px solid #ddd;
+	width:100%;
+}
+
+.tabs.rel-tabs {
+    position:relative;
+}
+
+.col { /* resolve col expansion in firefox */
+    min-width: 1px;
+}

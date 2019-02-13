@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>
+            TheatreProfile
+        </title>
+        <script src="libs/angular/angular.min.js">
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1"
+        />
+        <link href="css/ionic/ionic.min.css" rel="stylesheet" />
+        <link href="css/appery-ui/appery-ui.css" rel="stylesheet" />
+        <link href="css/__aio_components.css" rel="stylesheet" />
+        <link href="css/nvd3.css.css" rel="stylesheet" />
+        <link href="css/styles.css.css" rel="stylesheet" />
+        <link src="http://d3js.org/d3.v3.min.js" charset="utf-8" />
+        <link href="libs/angular-tooltips-master/dist/angular-tooltips.css" rel="stylesheet"
+        />
+        <link href="css/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        />
+        <script>
+                var require = {
+            urlArgs: window.navigator.userAgent.match(/Windows Phone/i) ? undefined : "bust=1540910202"
+        };
+        </script>
+        <script data-main="app/bootstrap" src="libs/requirejs/require.js">
+        </script>
+    </head>
+    
+    <body>
+        <div ng-controller="indexController" ng-cloak ng-init="init()">
+            <ion-header-bar data-aio-id="header" class="bar bar-light" ng-show="visionStatus.header">
+                <div class="buttons">
+                </div>
+                <h1 class="title">
+                    Header
+                </h1>
+                <div class="buttons pull-right">
+                </div>
+            </ion-header-bar>
+            <div ng-view data-aio-id="ng-view" hasHeader hasFooter class="">
+            </div>
+            <ion-footer-bar data-aio-id="footer" class="bar bar-light bar-footer" ng-show="visionStatus.footer">
+                <div class="buttons">
+                </div>
+                <h1 class="title">
+                    Footer
+                </h1>
+                <div class="buttons">
+                </div>
+            </ion-footer-bar>
+        </div>
+    </body>
+
+</html>

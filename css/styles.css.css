@@ -1,0 +1,174 @@
+.body{
+    font-family: "Helvetica Neue", Helvetica !important; 
+}
+
+.bulletchartbox{
+    border-style:solid;
+    border-width:2px;
+    border-color: #5c5c5c;
+    border-radius: 5px;
+}
+.modal{
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 50%;
+  height: 70%;
+  z-index: 10;
+  border-radius: 1rem;
+  background-color: #000000;
+  /*background-color: rgba(0,0,0,0.5);*/ /*dim the background*/
+}
+.modalsmall{
+  position: absolute;
+  top: 5%;
+  left: 20%;
+  width: 60%;
+  height: 90%;
+  z-index: 10;
+  border-radius: 1rem;
+  background-color: #000000;
+  /*background-color: rgba(0,0,0,0.5);*/ /*dim the background*/
+}
+.modalBG{
+    background-image: url(../files/images/theater-BG.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.modalimagebox{
+    height: 21.88rem;
+}
+.modalimage{
+    height: 90%;
+}
+.emptyspace{
+    padding: 10px 0 10px 0;
+}
+.litepadding{
+    padding: 2px 2px 2px 2px;
+}
+.nopadding
+{
+    padding: 0 0 0 0;
+}
+.dashheight{
+    height: 1055px;
+}
+.onboardbutton{
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+}
+.onboardbutton:hover{
+    color: #444;
+    background-color: #fff;
+    border: 2px solid #444;
+}
+.dashbutton{
+    color: #cc0000;
+    background-color: transparent;
+    border: 2px solid #cc0000;
+    border-radius: 5px;
+}
+.dashbutton:hover{
+    color: #cc0000;
+    background-color: #fff;
+    border: 2px solid #cc0000;
+}
+.textcenter{
+    text-align: center;
+}
+.textright{
+    text-align: right;
+}
+.fontsize-12{
+    font-size: .75rem;
+}
+.fontsize-16{
+    font-size: 1rem;
+}
+.fontsize-18{
+    font-size: 1.125rem;
+}
+.fontsize-20{
+    font-size: 1.25rem;
+}
+.fontsize-24{
+    font-size: 1.5rem;
+}
+.fontsize-28{
+    font-size: 1.75rem;
+}
+.fontbold{
+    font-weight: 700;
+}
+.fontlightbold{
+    font-weight: 600;
+}
+.textgreen{
+    color: #008000;
+}
+.textred{
+    color: #CC0000;
+}
+.textdarkred{
+    color: #8E0000;
+}
+.textwhite{
+    color: #FFFFFF;
+}
+.textblack{
+    color: #000000;
+}
+.backgroundchartblue /*Pie Chart section 1*/
+{
+    background-color: #1F77B4;
+}
+.backgroundchartlightblue /*Pie Chart section 2*/
+{
+    background-color: #AEC7E8;
+}
+.backgroundchartorange /*Pie Chart section 3*/
+{
+    background-color: #FF7F0E;
+}
+.backgroundchartpaleorange /*Pie Chart section 4*/
+{
+    background-color: #FFBB78;
+}
+.backgroundchartgreen /*Pie Chart section 5*/
+{
+    background-color: #2CA02C;
+}
+.backgroundchartpalegreen{
+    background-color: #98DF8A;
+}
+.backgroundTPgrey{
+    background-color: #e5e5e5;
+}
+.backgroundTPheadergrey{
+    background-color: #f8f8f8;
+}
+.backgroundTPred{
+    background-color: #cc0000;
+}
+.backgrounddashboardwhite{
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+.roundedborder{
+    border-radius: 8px;
+}
+.centered-spinner{
+    position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.maxwidth{
+    max-width: 1800px;
+    margin: auto;
+    min-width: 1024px;
+}
+.popup-buttons .button{
+    background-color: #cc0000;
+}
